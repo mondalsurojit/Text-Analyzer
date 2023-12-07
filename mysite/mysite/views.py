@@ -38,10 +38,10 @@ def analyze(request):
     if extraspaceremover == "on":
         analyzed = ""
         for index, char in enumerate(djtext):
-            if not (djtext[index] == " " and djtext[index + 1] == " "):
+            if char != " " or (index + 1 < len(djtext) and djtext[index + 1] != " "):
                 analyzed = analyzed + char
 
-        params = {'purpose': 'Removed New Line', 'analyzed_text': analyzed}
+        params = {'purpose': 'Extra Space Removed', 'analyzed_text': analyzed}
         djtext = analyzed
 
     if newlineremover == "on":
